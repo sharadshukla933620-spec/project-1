@@ -1,0 +1,20 @@
+{
+  "name": "sharad-shukla-portfolio",
+  "version": "1.0.0",
+  "description": "Interactive 3D Portfolio of Sharad Shukla built with Three.js, HTML5, CSS3, and JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "portfolio",
+    "threejs",
+    "webgl",
+    "javascript",
+    "css3",
+    "html5",
+    "developer-portfolio"
+  ],
+  "author": "Sharad Shukla <sharadshukla933620@gmail.com>",
+  "license": "MIT"
+}

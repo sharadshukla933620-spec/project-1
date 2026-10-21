@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharad Shukla | Creative Full-Stack & 3D Web Developer</title>
+  <meta name="description" content="Portfolio of Sharad Shukla - Full-Stack Developer specializing in Three.js, interactive 3D web experiences, modern JavaScript, and high-performance web applications.">
+  <meta name="keywords" content="Sharad Shukla, Full Stack Developer, Three.js Developer, WebGL, Creative Developer, Portfolio, JavaScript, Frontend Developer">
+  <meta name="author" content="Sharad Shukla">
+
+  <!-- OpenGraph / Social Meta Tags -->
+  <meta property="og:title" content="Sharad Shukla | Creative Full-Stack & 3D Web Developer">
+  <meta property="og:description" content="Explore interactive 3D web applications, full-stack systems, and creative design engineering crafted by Sharad Shukla.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sharadshukla933620-spec.github.io/project-1/">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%230b0f19'/><path d='M30 70 L50 25 L70 70 M38 52 L62 52' stroke='%2300f0ff' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/><circle cx='50' cy='25' r='5' fill='%23a855f7'/></svg>">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="cyan">
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor-dot" id="cursorDot"></div>
+  <div class="custom-cursor-outline" id="cursorOutline"></div>
+
+  <!-- Background 3D Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="site-header" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo" aria-label="Sharad Shukla Home">
+        <span class="logo-symbol">&lt;S/&gt;</span>
+        <span class="logo-text">Sharad<span class="logo-accent">.dev</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link"><span class="nav-num">01.</span> About</a>
+        <a href="#skills" class="nav-link"><span class="nav-num">02.</span> Skills</a>
+        <a href="#projects" class="nav-link"><span class="nav-num">03.</span> Projects</a>
+        <a href="#experience" class="nav-link"><span class="nav-num">04.</span> Journey</a>
+        <a href="#contact" class="nav-link"><span class="nav-num">05.</span> Contact</a>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <!-- Sound Effect Toggle -->
+        <button id="soundToggle" class="icon-btn" aria-label="Toggle sound effects" title="Toggle Sound Effects">
+          <svg class="sound-icon-on" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <svg class="sound-icon-off hidden" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+
+        <!-- Theme Color Selector -->
+        <div class="theme-dropdown-wrapper">
+          <button id="themeToggle" class="icon-btn" aria-label="Change color theme" title="Switch Color Theme">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <div class="theme-menu" id="themeMenu">
+            <button class="theme-option active" data-color="cyan"><span class="color-dot cyan"></span> Cyan</button>
+            <button class="theme-option" data-color="purple"><span class="color-dot purple"></span> Violet</button>
+            <button class="theme-option" data-color="emerald"><span class="color-dot emerald"></span> Emerald</button>
+            <button class="theme-option" data-color="amber"><span class="color-dot amber"></span> Amber</button>
+          </div>
+        </div>
+
+        <!-- Resume Modal Button -->
+        <a href="#contact" class="btn btn-outline btn-sm nav-cta">Let's Talk</a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-content">
+      <nav class="mobile-nav-links">
+        <a href="#about" class="mobile-link"><span>01.</span> About Me</a>
+        <a href="#skills" class="mobile-link"><span>02.</span> Skills & Stack</a>
+        <a href="#projects" class="mobile-link"><span>03.</span> Featured Work</a>
+        <a href="#experience" class="mobile-link"><span>04.</span> Experience</a>
+        <a href="#contact" class="mobile-link"><span>05.</span> Contact Me</a>
+      </nav>
+      <div class="mobile-socials">
+        <a href="https://github.com/sharadshukla933620-spec" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="mailto:sharadshukla933620@gmail.com">Email</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        
+        <div class="hero-content">
+          <div class="status-badge">
+            <span class="pulsing-dot"></span>
+            <span>Available for innovative projects & roles</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="greeting">Hello World, I'm</span>
+            <span class="name-gradient">Sharad Shukla</span>
+          </h1>
+
+          <div class="hero-typewriter-wrapper">
+            <span class="type-prefix">Specialized in </span>
+            <span class="typewriter-text" id="typewriter"></span>
+            <span class="typewriter-cursor">|</span>
+          </div>
+
+          <p class="hero-description">
+            Passionate software engineer building high-performance full-stack web applications, immersive 3D digital experiences with Three.js, and sleek, intuitive user interfaces that bridge imagination with scalable code.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary glow-effect">
+              <span>View My Work</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <span>Get in Touch</span>
+            </a>
+            <button class="btn btn-ghost" id="openResumeBtn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span>View Resume</span>
+            </button>
+          </div>
+
+          <!-- Hero Tech Tags -->
+          <div class="hero-tech-strip">
+            <span class="tech-tag">JavaScript (ES6+)</span>
+            <span class="tech-tag">Three.js / WebGL</span>
+            <span class="tech-tag">HTML5 / Modern CSS</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">React Ecosystem</span>
+          </div>
+        </div>
+
+        <!-- 3D Interactive Showcase In Hero -->
+        <div class="hero-3d-wrapper">
+          <div class="hero-card-glass">
+            <div class="card-glow-layer"></div>
+            <div class="scene-header">
+              <div class="terminal-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <span class="scene-title">Three.js 3D Core Engine</span>
+              <span class="fps-counter" id="fpsDisplay">60 FPS</span>
+            </div>
+
+            <!-- Canvas container for hero 3d object -->
+            <div class="hero-canvas-container" id="hero3dContainer">
+              <!-- Three.js will render here -->
+              <div class="canvas-loader" id="canvasLoader">
+                <div class="spinner"></div>
+                <span>Initializing 3D Shaders...</span>
+              </div>
+            </div>
+
+            <!-- Interactive 3D Controls -->
+            <div class="hero-3d-controls">
+              <div class="controls-label">Interactive Controls:</div>
+              <div class="controls-buttons">
+                <button class="shape-btn active" data-shape="torus" title="Torus Knot">Torus Knot</button>
+                <button class="shape-btn" data-shape="icosahedron" title="Icosahedron Crystal">Crystal</button>
+                <button class="shape-btn" data-shape="sphere" title="Cyber Sphere">Sphere</button>
+                <button class="shape-btn" data-shape="wave" title="Particle Plane">Wave</button>
+                <button class="wireframe-toggle-btn" id="wireframeToggle" title="Toggle Wireframe Mode">Wireframe: ON</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hero Statistics Bar -->
+      <div class="hero-stats-bar">
+        <div class="container stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" data-target="15">0</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="3">0</div>
+            <div class="stat-label">Years Crafting Code</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="100">0</div>
+            <div class="stat-label">% Commitment to Quality</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="12">0</div>
+            <div class="stat-label">Modern Technologies</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT & INTERACTIVE TERMINAL SECTION -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">01. Discovery</span>
+          <h2 class="section-title">About <span class="text-gradient">Sharad Shukla</span></h2>
+          <p class="section-subtitle">Bridging the gap between software engineering, creative design, and 3D visual computing.</p>
+        </div>
+
+        <div class="about-grid">
+          
+          <div class="about-narrative">
+            <div class="glass-card narrative-card">
+              <h3>Engineering Digital Realities</h3>
+              <p>
+                I am a passionate software engineer and creative technologist who believes the web shouldn't just be static text and flat boxes. It should be dynamic, intuitive, responsive, and captivating.
+              </p>
+              <p>
+                My journey began with deep curiosity for how web architectures scale and how mathematical geometry transforms into vivid visuals on the screen. Over the years, I have honed expertise across the entire stack—from architecting RESTful services and robust backend logic with <strong>Node.js</strong> to crafting responsive frontends with <strong>modern JavaScript, CSS3, and Three.js</strong>.
+              </p>
+              <p>
+                Whether building complex web applications, designing fluid UI design systems, or programming 3D WebGL scenes that run at 60 FPS across desktop and mobile, I focus on clean architecture, performance optimization, and delighting users.
+              </p>
+
+              <div class="about-highlights">
+                <div class="highlight-item">
+                  <div class="highlight-icon">⚡</div>
+                  <div>
+                    <h4>Performance First</h4>
+                    <p>Optimized rendering pipelines, lightweight payloads, and 60+ FPS interactions.</p>
+                  </div>
+                </div>
+                <div class="highlight-item">
+                  <div class="highlight-icon">💎</div>
+                  <div>
+                    <h4>Clean Code Architecture</h4>
+                    <p>Modular, maintainable, self-documenting code built with industry best practices.</p>
+                  </div>
+                </div>
+                <div class="highlight-item">
+                  <div class="highlight-icon">🌐</div>
+                  <div>
+                    <h4>3D & Interactive WebGL</h4>
+                    <p>Pushing web frontiers with Three.js shaders, lighting, and geometric physics.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Developer Terminal -->
+          <div class="about-terminal-container">
+            <div class="terminal-card glass-card">
+              <div class="terminal-topbar">
+                <div class="terminal-dots">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <span class="terminal-title">sharad@terminal:~ (bash)</span>
+                <span class="terminal-badge">LIVE INTERACTIVE</span>
+              </div>
+
+              <div class="terminal-body" id="terminalOutput">
+                <div class="term-line"><span class="term-prompt">sharad@portfolio:~$</span> <span class="term-text">welcome</span></div>
+                <div class="term-output">
+                  Welcome to Sharad Shukla's interactive dev console v2.4.<br>
+                  Type <span class="term-highlight">'help'</span> to see available commands or tap below.
+                </div>
+              </div>
+
+              <div class="terminal-input-row">
+                <span class="term-prompt">sharad@portfolio:~$</span>
+                <input type="text" id="terminalInput" class="term-input" placeholder="Type a command (help, skills, bio, contact, clear)..." autocomplete="off" spellcheck="false">
+              </div>
+
+              <div class="terminal-quick-chips">
+                <span class="chip-label">Quick run:</span>
+                <button class="term-chip" data-cmd="bio">bio</button>
+                <button class="term-chip" data-cmd="skills">skills</button>
+                <button class="term-chip" data-cmd="projects">projects</button>
+                <button class="term-chip" data-cmd="contact">contact</button>
+                <button class="term-chip" data-cmd="clear">clear</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS & TECH STACK SECTION -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">02. Capabilities</span>
+          <h2 class="section-title">Technical <span class="text-gradient">Arsenal</span></h2>
+          <p class="section-subtitle">Proficient in modern web standards, 3D graphics, scalable backend development, and industry tooling.</p>
+        </div>
+
+        <!-- Skills Filter Tabs -->
+        <div class="skills-tabs">
+          <button class="skill-tab active" data-filter="all">All Disciplines</button>
+          <button class="skill-tab" data-filter="frontend">Frontend & 3D</button>
+          <button class="skill-tab" data-filter="backend">Backend & DB</button>
+          <button class="skill-tab" data-filter="tools">DevOps & Tools</button>
+        </div>
+
+        <div class="skills-grid" id="skillsGrid">
+
+          <!-- Three.js -->
+          <div class="skill-card glass-card" data-category="frontend">
+            <div class="skill-header">
+              <div class="skill-icon-box">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h4>Three.js / WebGL</h4>
+                <span class="skill-level-text">Advanced / 3D Graphics</span>
+              </div>
+            </div>
+            <p class="skill-desc">Mesh geometries, custom materials, lighting, particle engines, scene graphing, and responsive rendering.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" style="--level: 90%;"></div>
+            </div>
+          </div>
+
+          <!-- JavaScript ES6+ -->
+          <div class="skill-card glass-card" data-category="frontend">
+            <div class="skill-header">
+              <div class="skill-icon-box">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path>
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h4>JavaScript (ES6+)</h4>
+                <span class="skill-level-text">Expert Core</span>
+              </div>
+            </div>
+            <p class="skill-desc">Async/Await, Closures, DOM manipulation, Web APIs, Event loops, Canvas API, Functional Programming.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" style="--level: 95%;"></div>
+            </div>
+          </div>
+
+          <!-- HTML5 & Semantic Web -->
+          <div class="skill-card glass-card" data-category="frontend">
+            <div class="skill-header">
+              <div class="skill-icon-box">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 19 21 12 17 5 21 12 2"></polygon>
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h4>HTML5 & Semantics</h4>
+                <span class="skill-level-text">Mastery</span>
+              </div>
+            </div>
+            <p class="skill-desc">Semantic structure, SEO, accessible ARIA roles, modern web standards, audio/video integration.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" style="--level: 95%;"></div>
+            </div>
+          </div>
+
+          <!-- Modern CSS3 & Animations -->
+          <div class="skill-card glass-card" data-category="frontend">
+            <div class="skill-header">
+              <div class="skill-icon-box">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h4>CSS3 / Glassmorphism</h4>
+                <span class="skill-level-text">Advanced</span>
+              </div>
+            </div>
+            <p class="skill-desc">CSS Grid, Flexbox, custom properties, keyframe animations, glassmorphism, responsive breakpoints.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" style="--level: 92%;"></div>
+            </div>
+          </div>
+
+          <!-- React Ecosystem -->
+          <div class="skill-card glass-card" data-category="frontend">
+            <div class="skill-header">
+              <div class="skill-icon-box">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="2"></circle>
+                  <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(30 12 12)"></ellipse>
+                  <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(90 12 12)"></ellipse>
+                  <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(150 12 12)"></ellipse>
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h4>React.js</h4>
+                <span class="skill-level-text">Proficient</span>
+              </div>
+            </div>
+            <p class="skill-desc">Hooks, state management, component lifecycles, virtual DOM, reusable UI components.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" style="--level: 85%;"></div>
+            </div>
+          </div>
+
+          <!-- Node.js & Express -->
+          <div class="skill-card glass-card" data-category="backend">
+            <div class="skill-header">
+              <div class="skill-icon-box">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7v10l10 5 10-5V7L12 2z"></path>
+                  <path d="M12 12l10-5"></path>
+                  <path d="M12 12v10"></path>
+                  <path d="M12 12L2 7"></path>
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h4>Node.js & Express</h4>
+                <span class="skill-level-text">Backend Core</span>
+              </div>
+            </div>
+            <p class="skill-desc">RESTful API design, middleware pipelines, authentication (JWT/OAuth), server-side logic, file streams.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" style="--level: 88%;"></div>
+            </div>
+          </div>
+
+          <!-- Databases -->
+          <div class="skill-card glass-card" data-category="backend">
+            <div class="skill-header">
+              <div class="skill-icon-box">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h4>Databases (SQL & NoSQL)</h4>
+                <span class="skill-level-text">Proficient</span>
+              </div>
+            </div>
+            <p class="skill-desc">MongoDB, Mongoose schemas, PostgreSQL, queries, indexing, relationship models, aggregation pipelines.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" style="--level: 82%;"></div>
+            </div>
+          </div>
+
+          <!-- Git & GitHub Version Control -->
+          <div class="skill-card glass-card" data-category="tools">
+            <div class="skill-header">
+              <div class="skill-icon-box">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="18" cy="18" r="3"></circle>
+                  <circle cx="6" cy="6" r="3"></circle>
+                  <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+                  <line x1="6" y1="9" x2="6" y2="21"></line>
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h4>Git & GitHub</h4>
+                <span class="skill-level-text">Daily Workflow</span>
+              </div>
+            </div>
+            <p class="skill-desc">Branching strategies, merge conflict resolution, pull requests, GitHub Actions, semantic commit history.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" style="--level: 94%;"></div>
+            </div>
+          </div>
+
+          <!-- Build Tools & Modern Workflow -->
+          <div class="skill-card glass-card" data-category="tools">
+            <div class="skill-header">
+              <div class="skill-icon-box">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h4>Vite, Webpack & npm</h4>
+                <span class="skill-level-text">Proficient</span>
+              </div>
+            </div>
+            <p class="skill-desc">Modern bundling, tree-shaking, package publishing, linting with ESLint, code formatting.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" style="--level: 86%;"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS SECTION -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">03. Portfolio Showcase</span>
+          <h2 class="section-title">Selected <span class="text-gradient">Projects</span></h2>
+          <p class="section-subtitle">Real-world applications showcasing 3D visual computing, full-stack architectures, and modern web interfaces.</p>
+        </div>
+
+        <!-- Project Filter Buttons -->
+        <div class="project-filters">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="3d">3D & WebGL</button>
+          <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+          <button class="filter-btn" data-filter="web">Web Apps</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+
+          <!-- Project 1: Nexus 3D -->
+          <article class="project-card glass-card" data-category="3d">
+            <div class="project-banner">
+              <div class="project-visual-mockup mockup-3d">
+                <div class="mockup-mesh-sphere"></div>
+                <div class="mockup-orbit-ring"></div>
+                <span class="mockup-tag">Interactive 3D Engine</span>
+              </div>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-details-btn" data-project="nexus3d">
+                  <span>View Deep Dive</span>
+                </button>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-type">3D WebGL Experience</span>
+                <span class="featured-badge">Featured</span>
+              </div>
+              <h3 class="project-title">Nexus 3D Virtual Showroom</h3>
+              <p class="project-excerpt">
+                An interactive WebGL product configuration environment engineered with Three.js. Supports custom material physics, real-time lighting adjustments, 360-degree orbit inspection, and particle environment effects.
+              </p>
+              <div class="project-tech-tags">
+                <span>Three.js</span>
+                <span>WebGL</span>
+                <span>JavaScript ES6</span>
+                <span>Canvas API</span>
+                <span>CSS3 Glassmorphism</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/sharadshukla933620-spec/project-1" target="_blank" rel="noopener noreferrer" class="link-btn" title="View Source on GitHub">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  <span>Code</span>
+                </a>
+                <button class="link-btn demo-btn view-details-btn" data-project="nexus3d">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  <span>Preview</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: OmniTask AI Dashboard -->
+          <article class="project-card glass-card" data-category="fullstack">
+            <div class="project-banner">
+              <div class="project-visual-mockup mockup-dashboard">
+                <div class="mockup-chart-bars">
+                  <span style="height: 40%"></span>
+                  <span style="height: 75%"></span>
+                  <span style="height: 55%"></span>
+                  <span style="height: 90%"></span>
+                  <span style="height: 65%"></span>
+                </div>
+                <span class="mockup-tag">Full-Stack Cloud App</span>
+              </div>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-details-btn" data-project="omnitask">
+                  <span>View Deep Dive</span>
+                </button>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-type">Full-Stack SaaS</span>
+                <span class="featured-badge">Featured</span>
+              </div>
+              <h3 class="project-title">OmniTask Cloud Platform</h3>
+              <p class="project-excerpt">
+                Full-featured project management platform featuring collaborative Kanban boards, RESTful API backend, JWT authentication, real-time activity timelines, and responsive dashboards.
+              </p>
+              <div class="project-tech-tags">
+                <span>Node.js</span>
+                <span>Express</span>
+                <span>MongoDB</span>
+                <span>REST API</span>
+                <span>Vanilla JS</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/sharadshukla933620-spec/project-1" target="_blank" rel="noopener noreferrer" class="link-btn" title="View Source on GitHub">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  <span>Code</span>
+                </a>
+                <button class="link-btn demo-btn view-details-btn" data-project="omnitask">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  <span>Preview</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: CryptoPulse Real-Time Terminal -->
+          <article class="project-card glass-card" data-category="web">
+            <div class="project-banner">
+              <div class="project-visual-mockup mockup-crypto">
+                <div class="mockup-sine-wave"></div>
+                <span class="mockup-tag">Live Market Data</span>
+              </div>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-details-btn" data-project="cryptopulse">
+                  <span>View Deep Dive</span>
+                </button>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-type">FinTech & Web App</span>
+              </div>
+              <h3 class="project-title">CryptoPulse DeFi Terminal</h3>
+              <p class="project-excerpt">
+                High-frequency cryptocurrency market tracker. Features real-time price updates via WebSockets, candlestick chart visualizers, currency conversion engine, and portfolio profit-and-loss calculator.
+              </p>
+              <div class="project-tech-tags">
+                <span>JavaScript ES6+</span>
+                <span>WebSockets</span>
+                <span>Chart.js / Canvas</span>
+                <span>REST API</span>
+                <span>CSS3</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/sharadshukla933620-spec/project-1" target="_blank" rel="noopener noreferrer" class="link-btn" title="View Source on GitHub">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  <span>Code</span>
+                </a>
+                <button class="link-btn demo-btn view-details-btn" data-project="cryptopulse">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  <span>Preview</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: EchoWave Visualizer -->
+          <article class="project-card glass-card" data-category="3d">
+            <div class="project-banner">
+              <div class="project-visual-mockup mockup-audio">
+                <div class="mockup-eq-wave">
+                  <span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <span class="mockup-tag">3D Web Audio API</span>
+              </div>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-details-btn" data-project="echowave">
+                  <span>View Deep Dive</span>
+                </button>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-type">Audio Engineering & 3D</span>
+              </div>
+              <h3 class="project-title">EchoWave Audio Visualizer</h3>
+              <p class="project-excerpt">
+                Real-time 3D audio reactive particle sphere and wave visualizer built on top of Web Audio API and Three.js. Analyzes frequency spectra and modulates mesh geometry with sound amplitude.
+              </p>
+              <div class="project-tech-tags">
+                <span>Web Audio API</span>
+                <span>Three.js</span>
+                <span>GLSL Shaders</span>
+                <span>DSP / FFT</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/sharadshukla933620-spec/project-1" target="_blank" rel="noopener noreferrer" class="link-btn" title="View Source on GitHub">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  <span>Code</span>
+                </a>
+                <button class="link-btn demo-btn view-details-btn" data-project="echowave">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  <span>Preview</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5: DevSphere Cloud Editor -->
+          <article class="project-card glass-card" data-category="fullstack">
+            <div class="project-banner">
+              <div class="project-visual-mockup mockup-code">
+                <div class="mockup-code-lines">
+                  <code>const socket = io();</code>
+                  <code>await room.connect();</code>
+                  <code>compile({ AST });</code>
+                </div>
+                <span class="mockup-tag">Collaborative Editor</span>
+              </div>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-details-btn" data-project="devsphere">
+                  <span>View Deep Dive</span>
+                </button>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-type">Developer Tooling</span>
+              </div>
+              <h3 class="project-title">DevSphere Code Studio</h3>
+              <p class="project-excerpt">
+                Browser-based collaborative code workspace with live code execution sandbox, multi-user cursor tracking, syntax highlighting, and instant snippet sharing.
+              </p>
+              <div class="project-tech-tags">
+                <span>Node.js</span>
+                <span>WebSockets</span>
+                <span>Monaco / CodeMirror</span>
+                <span>Docker</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/sharadshukla933620-spec/project-1" target="_blank" rel="noopener noreferrer" class="link-btn" title="View Source on GitHub">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  <span>Code</span>
+                </a>
+                <button class="link-btn demo-btn view-details-btn" data-project="devsphere">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  <span>Preview</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 6: Aether UI Design System -->
+          <article class="project-card glass-card" data-category="web">
+            <div class="project-banner">
+              <div class="project-visual-mockup mockup-ui">
+                <div class="mockup-ui-elements">
+                  <div class="mock-button">Button</div>
+                  <div class="mock-badge">Badge</div>
+                  <div class="mock-switch"></div>
+                </div>
+                <span class="mockup-tag">Design System</span>
+              </div>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-details-btn" data-project="aetherui">
+                  <span>View Deep Dive</span>
+                </button>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-type">Design System & UI Library</span>
+              </div>
+              <h3 class="project-title">Aether UI System</h3>
+              <p class="project-excerpt">
+                Ultra-lightweight, zero-dependency design system offering 40+ accessible UI components, theme token generators, glassmorphism utilities, and micro-interaction states.
+              </p>
+              <div class="project-tech-tags">
+                <span>CSS3 Variables</span>
+                <span>Semantic HTML5</span>
+                <span>Vanilla JS</span>
+                <span>WCAG 2.1 AA</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/sharadshukla933620-spec/project-1" target="_blank" rel="noopener noreferrer" class="link-btn" title="View Source on GitHub">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  <span>Code</span>
+                </a>
+                <button class="link-btn demo-btn view-details-btn" data-project="aetherui">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  <span>Preview</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE & JOURNEY TIMELINE -->
+    <section class="section journey-section" id="experience">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">04. Milestones</span>
+          <h2 class="section-title">My Journey & <span class="text-gradient">Experience</span></h2>
+          <p class="section-subtitle">Key engineering milestones, skill evolution, and continuous technical growth.</p>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+
+          <!-- Item 1 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-date">2024 — Present</span>
+              <h3 class="timeline-role">Full-Stack & Creative 3D Developer</h3>
+              <h4 class="timeline-company">Independent Innovations & Client Systems</h4>
+              <p>
+                Architecting high-performance web solutions, specialized 3D WebGL visualizations, and responsive frontend systems. Implementing full-stack applications with Node.js, Express, Three.js, and modern JS.
+              </p>
+              <div class="timeline-tags">
+                <span>Three.js</span>
+                <span>Node.js</span>
+                <span>WebGL</span>
+                <span>REST APIs</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-date">2023 — 2024</span>
+              <h3 class="timeline-role">Frontend & Interactive Web Engineer</h3>
+              <h4 class="timeline-company">Web Application Projects</h4>
+              <p>
+                Built intuitive user interfaces and dynamic single-page applications. Mastered responsive layout architectures, CSS modern standards, component state handling, and client-side optimization.
+              </p>
+              <div class="timeline-tags">
+                <span>JavaScript</span>
+                <span>CSS3 Grid/Flex</span>
+                <span>HTML5</span>
+                <span>Git/GitHub</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-date">2021 — 2023</span>
+              <h3 class="timeline-role">Computer Science Foundations & Software Craft</h3>
+              <h4 class="timeline-company">Academic & Open Source Learning</h4>
+              <p>
+                Established strong fundamentals in data structures, algorithms, object-oriented design, database architectures, and web protocols. Authored open-source utilities and built hands-on software projects.
+              </p>
+              <div class="timeline-tags">
+                <span>Data Structures</span>
+                <span>Algorithms</span>
+                <span>OOP</span>
+                <span>Databases</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">05. Connect</span>
+          <h2 class="section-title">Let's Build Something <span class="text-gradient">Extraordinary</span></h2>
+          <p class="section-subtitle">Have a project in mind, want to hire, or just want to chat about 3D web and software engineering? Reach out!</p>
+        </div>
+
+        <div class="contact-grid">
+          
+          <!-- Contact Information & Quick Actions -->
+          <div class="contact-info-col">
+            <div class="glass-card contact-card">
+              <h3>Contact Information</h3>
+              <p>
+                I'm actively looking for opportunities to collaborate on exciting projects, full-time roles, or freelance work. Feel free to shoot me an email or message!
+              </p>
+
+              <div class="contact-channels">
+                
+                <div class="channel-item">
+                  <div class="channel-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                  </div>
+                  <div class="channel-details">
+                    <span class="channel-label">Email Address</span>
+                    <a href="mailto:sharadshukla933620@gmail.com" class="channel-value">sharadshukla933620@gmail.com</a>
+                    <button class="copy-email-btn" id="copyEmailBtn" title="Copy email to clipboard">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                      <span id="copyFeedbackText">Copy Email</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="channel-item">
+                  <div class="channel-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </div>
+                  <div class="channel-details">
+                    <span class="channel-label">GitHub Profile</span>
+                    <a href="https://github.com/sharadshukla933620-spec" target="_blank" rel="noopener noreferrer" class="channel-value">github.com/sharadshukla933620-spec</a>
+                  </div>
+                </div>
+
+                <div class="channel-item">
+                  <div class="channel-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                  </div>
+                  <div class="channel-details">
+                    <span class="channel-label">Response Time</span>
+                    <span class="channel-value text-accent">Usually under 24 hours</span>
+                  </div>
+                </div>
+
+                <div class="channel-item">
+                  <div class="channel-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                  </div>
+                  <div class="channel-details">
+                    <span class="channel-label">Location & Remote</span>
+                    <span class="channel-value">Available Globally (Remote / Hybrid)</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Working Interactive Contact Form -->
+          <div class="contact-form-col">
+            <div class="glass-card form-card">
+              <h3>Send a Message</h3>
+              <form id="contactForm" class="contact-form" novalidate>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="userName">Your Name <span class="required">*</span></label>
+                    <input type="text" id="userName" name="name" placeholder="John Doe" required>
+                    <span class="form-error" id="nameError"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="userEmail">Your Email <span class="required">*</span></label>
+                    <input type="email" id="userEmail" name="email" placeholder="john@example.com" required>
+                    <span class="form-error" id="emailError"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" placeholder="Project Inquiry / Opportunity">
+                </div>
+
+                <div class="form-group">
+                  <label for="userMessage">Message <span class="required">*</span></label>
+                  <textarea id="userMessage" name="message" rows="5" placeholder="Hi Sharad, I loved your 3D portfolio and would like to discuss..." required></textarea>
+                  <span class="form-error" id="messageError"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block glow-effect" id="sendBtn">
+                  <span id="sendBtnText">Transmit Message</span>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+
+                <div class="form-toast hidden" id="formToast">
+                  <div class="toast-icon">✓</div>
+                  <div class="toast-message">Thank you! Your message has been prepared. Opening your email client...</div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <a href="#hero" class="brand-logo">
+          <span class="logo-symbol">&lt;S/&gt;</span>
+          <span class="logo-text">Sharad Shukla</span>
+        </a>
+        <p class="footer-tagline">Crafting modern interactive web experiences with passion & code.</p>
+      </div>
+
+      <div class="footer-center">
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Journey</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <p class="copyright">
+          &copy; <span id="currentYear">2026</span> Sharad Shukla. Built with HTML5, CSS3, JavaScript & Three.js.
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <button id="backToTop" class="back-to-top-btn" title="Back to top">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PROJECT DEEP DIVE MODAL -->
+  <div class="modal-overlay" id="projectModal" aria-hidden="true">
+    <div class="modal-dialog glass-card">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">&times;</button>
+      <div class="modal-content" id="modalContent">
+        <!-- Content injected dynamically by main.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUME PREVIEW MODAL -->
+  <div class="modal-overlay" id="resumeModal" aria-hidden="true">
+    <div class="modal-dialog resume-dialog glass-card">
+      <button class="modal-close-btn" id="resumeCloseBtn" aria-label="Close modal">&times;</button>
+      <div class="resume-modal-header">
+        <h2>Curriculum Vitae</h2>
+        <div class="resume-actions">
+          <button class="btn btn-sm btn-outline" id="printResumeBtn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Print / Save PDF
+          </button>
+        </div>
+      </div>
+      <div class="resume-modal-body" id="resumeBody">
+        <div class="resume-preview-sheet">
+          <div class="resume-sheet-header">
+            <h1>SHARAD SHUKLA</h1>
+            <p class="resume-title">Full-Stack Software Engineer & Creative 3D Developer</p>
+            <div class="resume-contact-line">
+              <span>sharadshukla933620@gmail.com</span> • 
+              <span>github.com/sharadshukla933620-spec</span>
+            </div>
+          </div>
+
+          <div class="resume-section-block">
+            <h3>Professional Summary</h3>
+            <p>
+              Dedicated Software Engineer with specialized expertise in modern JavaScript (ES6+), Three.js/WebGL interactive computing, responsive UI architecture, and Node.js backend systems. Proven ability to translate complex design systems and mathematical geometry into scalable, high-performance web applications running smoothly across all devices.
+            </p>
+          </div>
+
+          <div class="resume-section-block">
+            <h3>Core Technical Competencies</h3>
+            <ul>
+              <li><strong>Languages & Standards:</strong> JavaScript (ES6+), TypeScript, HTML5, CSS3, SCSS, SQL</li>
+              <li><strong>3D & Graphics:</strong> Three.js, WebGL, GLSL Shaders, Canvas API, Interactive Physics</li>
+              <li><strong>Frontend:</strong> React.js, Responsive Glassmorphism Design, Mobile-First UI, Accessibility (a11y)</li>
+              <li><strong>Backend & Cloud:</strong> Node.js, Express.js, RESTful APIs, MongoDB, PostgreSQL, WebSockets</li>
+              <li><strong>Tooling & DevOps:</strong> Git, GitHub, Vite, Webpack, Docker, Linux/Bash, npm</li>
+            </ul>
+          </div>
+
+          <div class="resume-section-block">
+            <h3>Key Projects & Achievements</h3>
+            <div class="resume-job-entry">
+              <h4>Nexus 3D Virtual Showroom (Three.js & WebGL)</h4>
+              <p>Designed and built an interactive 3D WebGL showroom with custom lighting, dynamic orbit inspection, and particle environment rendering at constant 60 FPS.</p>
+            </div>
+            <div class="resume-job-entry">
+              <h4>OmniTask Cloud Platform (Full-Stack)</h4>
+              <p>Developed full-stack task orchestration platform with Node.js/Express REST backend, JWT authentication, and interactive client dashboard.</p>
+            </div>
+            <div class="resume-job-entry">
+              <h4>CryptoPulse Real-Time DeFi Terminal</h4>
+              <p>Engineered financial dashboard utilizing WebSockets and Chart.js for real-time market visualization and crypto analytics.</p>
+            </div>
+          </div>
+
+          <div class="resume-section-block">
+            <h3>Education & Certifications</h3>
+            <p><strong>Bachelor of Computer Science / Engineering</strong></p>
+            <p>Focused on Data Structures, Algorithms, Distributed Systems, and Web Engineering.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Three.js (Loaded from CDN with local vendor fallback) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="assets/vendor/three.min.js"><\/script>');
+    }
+  </script>
+
+  <!-- Application Scripts -->
+  <script src="js/three-scene.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
