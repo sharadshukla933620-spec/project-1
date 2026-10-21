@@ -294,11 +294,11 @@
   const typewriterElement = document.getElementById('typewriter');
   if (typewriterElement) {
     const phrases = [
-      'Full-Stack Web Architect',
-      'Interactive 3D WebGL Engineer',
-      'JavaScript & Node.js Specialist',
-      'Creative UI/UX Designer',
-      'Scalable Systems Builder'
+      'Aspiring Data Scientist',
+      'Generative AI Specialist',
+      'GLA University CSE Scholar',
+      'Java & Problem Solver',
+      'IIT Guwahati Ambassador'
     ];
 
     let phraseIndex = 0;
@@ -345,6 +345,7 @@
       if (entries[0].isIntersecting && !counted) {
         counted = true;
         statNumbers.forEach((stat) => {
+          const isDecimal = stat.getAttribute('data-decimals') === 'true';
           const target = +stat.getAttribute('data-target');
           let count = 0;
           const duration = 1600;
@@ -353,10 +354,10 @@
           const timer = setInterval(() => {
             count += Math.ceil(target / (duration / stepTime));
             if (count >= target) {
-              stat.textContent = target;
+              stat.textContent = isDecimal ? (target / 10).toFixed(1) : target;
               clearInterval(timer);
             } else {
-              stat.textContent = count;
+              stat.textContent = isDecimal ? (count / 10).toFixed(1) : count;
             }
           }, stepTime);
         });
@@ -382,44 +383,71 @@
       help: () => `
 Available system commands:
   • <span class="term-highlight">bio</span>         - About Sharad Shukla, background & vision
-  • <span class="term-highlight">skills</span>      - Comprehensive breakdown of tech competencies
-  • <span class="term-highlight">projects</span>    - Showcase of highlighted 3D and full-stack work
-  • <span class="term-highlight">contact</span>     - Direct contact info, email & GitHub
+  • <span class="term-highlight">education</span>   - GLA University B.Tech details & CGPA (7.6)
+  • <span class="term-highlight">certs</span>       - Verified certifications (HP, Google Cloud, be10x)
+  • <span class="term-highlight">skills</span>      - Technical & professional competencies
+  • <span class="term-highlight">leadership</span>  - IIT Guwahati Udgam'26 & District Sports
+  • <span class="term-highlight">projects</span>    - Featured Data Science & 3D Web projects
+  • <span class="term-highlight">contact</span>     - Email, Phone (+91 9336208456), LinkedIn & GitHub
   • <span class="term-highlight">theme</span>       - Switch color theme (try: theme purple/emerald/amber/cyan)
   • <span class="term-highlight">clear</span>       - Clear terminal window
   • <span class="term-highlight">date</span>        - Display system timestamp
   • <span class="term-highlight">sudo</span>        - Execute as superuser
 `,
       bio: () => `
-[SHARAD SHUKLA] - Full-Stack & Creative 3D Engineer
-Based globally. Focused on high-performance web engineering, 
-Three.js/WebGL interactive computing, and full-stack architectures.
-Passionate about turning mathematical concepts and sleek design 
-systems into intuitive, fast applications running at 60 FPS.
+[SHARAD SHUKLA] - Aspiring Data Scientist & AI Developer
+B.Tech CSE (AI & Data Science) student at GLA University, Mathura.
+Strong interest in Data Science, Machine Learning, Generative AI,
+and practical exposure to Java and AI productivity tools.
+Active in campus leadership and entrepreneurship initiatives.
+`,
+      education: () => `
+[EDUCATION]
+• Institution: GLA University, Mathura
+• Program:     B.Tech in Computer Science & Engineering (AI & Data Science)
+• Semester:    2nd Year, 3rd Semester
+• Performance: CGPA 7.6
+`,
+      certs: () => `
+[VERIFIED CERTIFICATIONS]
+1. Data Science & Analytics — HP LIFE / HP Foundation
+2. Introduction to Generative AI — Google Cloud / Simplilearn SkillUp
+3. AI Tools & ChatGPT Workshop — be10x
 `,
       skills: () => `
-[CORE TECH STACK]
-• Frontend & 3D: Three.js, WebGL, JavaScript (ES6+), HTML5, CSS3/SCSS, React.js
-• Backend & DB:   Node.js, Express.js, RESTful APIs, MongoDB, PostgreSQL
-• DevOps & Tools: Git/GitHub, Vite, Webpack, Docker, npm, Linux/Bash
+[TECHNICAL & PROFESSIONAL COMPETENCIES]
+• Programming: Java (OOP, Data Structures), Python, Modern JavaScript
+• AI & Data:   Generative AI, Data Science, Data Analytics, ChatGPT/AI Tools
+• 3D & Web:    Three.js, WebGL, HTML5, CSS3 Glassmorphism
+• Leadership:  Communication, Teamwork, Networking, Problem-Solving
+`,
+      leadership: () => `
+[LEADERSHIP & ACHIEVEMENTS]
+1. Campus Ambassador — Udgam'26, IIT Guwahati
+   Completed the Campus Ambassador Program; strengthened communication,
+   leadership and networking skills while contributing to an entrepreneurship summit.
+2. District-Level Player — U-14
+   Represented the district at Under-14 level, demonstrating discipline,
+   teamwork and competitive spirit.
 `,
       projects: () => `
-[FEATURED WORK]
-1. Nexus 3D       - WebGL Virtual Showroom with Three.js
-2. OmniTask       - Full-Stack Cloud Task Management Platform
-3. CryptoPulse    - Real-Time DeFi Terminal & Candlestick Charts
-4. EchoWave       - 3D Audio Visualizer with Web Audio API
-5. DevSphere      - Collaborative Browser Code Studio
-Type or click 'contact' to discuss building yours!
+[FEATURED PROJECTS]
+1. DataPulse Analytics Engine - Exploratory Data Science & Statistics Dashboard
+2. Nexus 3D Neural Showroom   - Three.js WebGL Interactive 3D Environment
+3. Java Search & Data Suite   - High-efficiency OOP & Graph traversal package
+4. GenAI Prompt Framework     - Structured prompt workflows and AI acceleration
+Type 'contact' to connect with Sharad!
 `,
       contact: () => `
-[CONNECT WITH SHARAD]
+[CONNECT WITH SHARAD SHUKLA]
 • Email:    sharadshukla933620@gmail.com
+• Phone:    +91 9336208456
+• LinkedIn: https://www.linkedin.com/in/sharad-shukla-027408381
 • GitHub:   https://github.com/sharadshukla933620-spec
-• Status:   Available for freelance projects and engineering roles.
+• Location: Uttar Pradesh, India
 `,
       date: () => `System Time: ${new Date().toLocaleString()}`,
-      sudo: () => `<span style="color: #f43f5e;">Access denied: Sharad has root access here! 😉</span>`
+      sudo: () => `<span style="color: #10b981;">Access granted to Sharad Shukla [UID 0]. Welcome Administrator!</span>`
     };
 
     function appendTerminal(cmd, output) {
@@ -584,82 +612,56 @@ Type or click 'contact' to discuss building yours!
 
   // Project Detailed Data Dictionary
   const PROJECT_DETAILS = {
-    nexus3d: {
-      type: '3D WebGL Virtual Showroom',
-      title: 'Nexus 3D Virtual Showroom',
-      desc: 'An immersive interactive 3D WebGL product inspection application engineered with Three.js. Enables visitors to configure textures, modify lighting models, toggle wireframe wire-cages, and examine mechanical geometries in 360 degrees.',
+    datapulse: {
+      type: 'Data Science & Statistical Analytics',
+      title: 'DataPulse Analytics Engine',
+      desc: 'An exploratory data analytics engine built applying statistical techniques from HP LIFE Foundation certification. Automates data ingestion, standard deviation and quartile metrics, correlation calculations, and dynamic chart visualization.',
       features: [
-        'Real-time PBR material physics & normal-map reflection calculations',
-        'Multi-axis camera orbit controls with smooth damping transitions',
-        'Dynamic environment particle field with interactive turbulence',
-        'Full 60 FPS performance maintained across mobile and desktop devices'
+        'Statistical distribution calculation (mean, median, variance, interquartile ranges)',
+        'Correlation coefficient matrix plotting and dynamic trend visualization',
+        'Automated executive report generation and outlier identification',
+        'Responsive interactive charting powered by HTML5 Canvas & modern JavaScript'
+      ],
+      tags: ['Data Science', 'Data Analytics', 'Statistics', 'JavaScript ES6+', 'HP LIFE'],
+      github: 'https://github.com/sharadshukla933620-spec/project-1'
+    },
+    nexus3d: {
+      type: '3D WebGL Neural Showroom',
+      title: 'Nexus 3D Neural Showroom',
+      desc: 'An immersive interactive 3D WebGL space engineered with Three.js. Features procedural starfields, orbiting satellite nodes, interactive wireframe shaders, and smooth camera damping running at consistent 60 FPS.',
+      features: [
+        'Custom PBR shaders and procedural geometry displacement',
+        'Interactive mouse parallax and camera orbit damping',
+        'Dynamic color palette switching synchronized with lighting models',
+        'Real-time FPS tracking and performance optimizations'
       ],
       tags: ['Three.js', 'WebGL', 'GLSL Shaders', 'JavaScript ES6+', 'HTML5 Canvas'],
       github: 'https://github.com/sharadshukla933620-spec/project-1'
     },
-    omnitask: {
-      type: 'Full-Stack Cloud Platform',
-      title: 'OmniTask Cloud Platform',
-      desc: 'A robust full-stack project orchestration and collaboration suite. Provides teams with Kanban board management, customizable milestone tracking, automated notifications, and real-time activity timelines.',
+    javasuite: {
+      type: 'Java Core & Data Structures',
+      title: 'Java Data Structures & Search Suite',
+      desc: 'A comprehensive Java library implementing core computer science data structures and search algorithms aligned with GLA University CSE curriculum.',
       features: [
-        'RESTful API architecture built on Node.js & Express with clean routing',
-        'Secure token-based authentication using JSON Web Tokens (JWT) and bcrypt hashing',
-        'MongoDB data layer with optimized schemas and indexed queries',
-        'Modern responsive dashboard with glassmorphism UI components'
+        'Graph traversal implementations: BFS, DFS, Dijkstra shortest path',
+        'Custom generic collections: Balanced Binary Search Tree, Hash Map, Priority Queue',
+        'Benchmarking tool for sorting performance (QuickSort, MergeSort, HeapSort)',
+        'Object-oriented principles: Clean design patterns, encapsulation, polymorphism'
       ],
-      tags: ['Node.js', 'Express', 'MongoDB', 'REST API', 'JavaScript', 'CSS3'],
+      tags: ['Java', 'Data Structures', 'OOP', 'Algorithms', 'GLA University'],
       github: 'https://github.com/sharadshukla933620-spec/project-1'
     },
-    cryptopulse: {
-      type: 'FinTech & Real-Time Terminal',
-      title: 'CryptoPulse DeFi Terminal',
-      desc: 'A live cryptocurrency intelligence dashboard tracking real-time market movements, order book depth, candlestick charts, and multi-currency price conversions.',
+    genaiwork: {
+      type: 'Generative AI & LLM Engineering',
+      title: 'GenAI Prompt Engineering Suite',
+      desc: 'A structured prompt engineering and AI productivity framework built applying concepts from Google Cloud and be10x workshops. Accelerates developer workflows and data tasks.',
       features: [
-        'Real-time streaming market prices powered by WebSockets',
-        'Interactive financial candlestick charting using HTML5 Canvas & Chart.js',
-        'Portfolio profit-and-loss calculation engine with local data caching',
-        'Responsive dark financial terminal UI with high-contrast color metrics'
+        'Few-shot prompt templates for automated data extraction and code generation',
+        'Workflow acceleration recipes for technical documentation and problem decomposition',
+        'Validation pipelines to minimize model hallucination in structured outputs',
+        'Productivity tooling integrations with ChatGPT and modern AI developer environments'
       ],
-      tags: ['JavaScript ES6+', 'WebSockets', 'HTML5 Canvas', 'REST API', 'CSS Grid'],
-      github: 'https://github.com/sharadshukla933620-spec/project-1'
-    },
-    echowave: {
-      type: '3D Audio Engineering & Visualizer',
-      title: 'EchoWave 3D Audio Visualizer',
-      desc: 'An interactive real-time audio reactive 3D sphere and waveform visualizer that analyzes audio frequencies via the Web Audio API and modulates Three.js mesh vertex heights accordingly.',
-      features: [
-        'Fast Fourier Transform (FFT) frequency spectrum frequency analysis',
-        'Dynamic GLSL vertex displacement reacting in real time to audio beats',
-        'Custom audio track loading and microphone input stream visualization',
-        'Multi-color frequency spectrum rendering with bloom glow effects'
-      ],
-      tags: ['Web Audio API', 'Three.js', 'GLSL Shaders', 'DSP / FFT', 'JavaScript'],
-      github: 'https://github.com/sharadshukla933620-spec/project-1'
-    },
-    devsphere: {
-      type: 'Developer Workspace & Code Studio',
-      title: 'DevSphere Collaborative Code Studio',
-      desc: 'A cloud-based coding playground allowing developers to write, inspect, and test code collaboratively in the browser with live preview and syntax highlighting.',
-      features: [
-        'Real-time peer-to-peer code synchronization using WebSockets',
-        'Integrated code editor supporting syntax highlighting for 20+ languages',
-        'Sandboxed iframe code execution runtime with error boundary capture',
-        'Instant snippet generation and shareable permalinks'
-      ],
-      tags: ['Node.js', 'WebSockets', 'Monaco Editor', 'HTML5', 'Express'],
-      github: 'https://github.com/sharadshukla933620-spec/project-1'
-    },
-    aetherui: {
-      type: 'Design System & UI Library',
-      title: 'Aether UI Design System',
-      desc: 'A lightweight, zero-dependency design system offering 40+ accessible UI components, theme token generators, glassmorphism utilities, and micro-interaction states.',
-      features: [
-        'Built with native CSS custom properties and semantic HTML5 for zero runtime bloat',
-        'Compliant with WCAG 2.1 AA accessibility guidelines',
-        'Fluid responsive typography and modular grid layouts',
-        'Interactive showcase documentation with live interactive code previews'
-      ],
-      tags: ['CSS3 Variables', 'HTML5 Semantics', 'Vanilla JS', 'WCAG 2.1', 'UI/UX'],
+      tags: ['Generative AI', 'ChatGPT', 'Google Cloud', 'be10x', 'Prompt Engineering'],
       github: 'https://github.com/sharadshukla933620-spec/project-1'
     }
   };
@@ -736,25 +738,31 @@ Type or click 'contact' to discuss building yours!
      -------------------------------------------------------------------------- */
   const resumeModal = document.getElementById('resumeModal');
   const openResumeBtn = document.getElementById('openResumeBtn');
+  const navResumeBtn = document.getElementById('navResumeBtn');
   const resumeCloseBtn = document.getElementById('resumeCloseBtn');
   const printResumeBtn = document.getElementById('printResumeBtn');
 
-  if (openResumeBtn && resumeModal) {
-    openResumeBtn.addEventListener('click', () => {
+  function openResume() {
+    if (resumeModal) {
       resumeModal.classList.add('active');
       resumeModal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
       sound.playBeep(750, 0.05);
-    });
-
-    if (resumeCloseBtn) {
-      resumeCloseBtn.addEventListener('click', () => {
-        resumeModal.classList.remove('active');
-        resumeModal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-      });
     }
+  }
 
+  if (openResumeBtn) openResumeBtn.addEventListener('click', openResume);
+  if (navResumeBtn) navResumeBtn.addEventListener('click', openResume);
+
+  if (resumeCloseBtn) {
+    resumeCloseBtn.addEventListener('click', () => {
+      resumeModal.classList.remove('active');
+      resumeModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    });
+  }
+
+  if (resumeModal) {
     resumeModal.addEventListener('click', (e) => {
       if (e.target === resumeModal) {
         resumeModal.classList.remove('active');
@@ -762,12 +770,12 @@ Type or click 'contact' to discuss building yours!
         document.body.style.overflow = '';
       }
     });
+  }
 
-    if (printResumeBtn) {
-      printResumeBtn.addEventListener('click', () => {
-        window.print();
-      });
-    }
+  if (printResumeBtn) {
+    printResumeBtn.addEventListener('click', () => {
+      window.print();
+    });
   }
 
   // Global ESC Key Handler for Modals
@@ -798,6 +806,24 @@ Type or click 'contact' to discuss building yours!
         }, 2500);
       }).catch(() => {
         window.location.href = `mailto:${email}`;
+      });
+    });
+  }
+
+  const copyPhoneBtn = document.getElementById('copyPhoneBtn');
+  const copyPhoneText = document.getElementById('copyPhoneText');
+
+  if (copyPhoneBtn) {
+    copyPhoneBtn.addEventListener('click', () => {
+      const phone = '+919336208456';
+      navigator.clipboard.writeText(phone).then(() => {
+        if (copyPhoneText) copyPhoneText.textContent = 'Copied!';
+        sound.playSuccess();
+        setTimeout(() => {
+          if (copyPhoneText) copyPhoneText.textContent = 'Copy Phone';
+        }, 2500);
+      }).catch(() => {
+        window.location.href = `tel:${phone}`;
       });
     });
   }

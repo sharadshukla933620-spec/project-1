@@ -1,55 +1,62 @@
-# 🌌 Sharad Shukla — Creative 3D & Full-Stack Developer Portfolio
+# 🌌 Sharad Shukla — AI & Data Science Engineer Portfolio
 
 [![Live Site](https://img.shields.io/badge/Demo-Live%20Portfolio-00f0ff?style=for-the-badge&logo=google-chrome&logoColor=white)](https://sharadshukla933620-spec.github.io/project-1/)
+[![GLA University](https://img.shields.io/badge/GLA%20University-B.Tech%20CSE-orange?style=for-the-badge)](https://www.gla.ac.in/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sharad%20Shukla-0077b5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sharad-shukla-027408381)
 [![Three.js](https://img.shields.io/badge/Three.js-r128-black?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-A high-performance, immersive developer portfolio featuring real-time **Three.js / WebGL 3D graphics**, interactive geometric morphing, synthesized **Web Audio API** sound effects, an **interactive developer terminal emulator**, dynamic color theme switching, and modern glassmorphism design.
+A high-performance, immersive portfolio showcasing **Data Science & AI workflows, Java engineering, Three.js / WebGL 3D graphics**, interactive geometric morphing, synthesized **Web Audio API** sound effects, an **interactive developer terminal emulator**, dynamic color theme switching, and modern glassmorphism design.
+
+---
+
+## 👨‍💻 About Sharad Shukla
+
+- **Education:** B.Tech in Computer Science & Engineering (AI & Data Science) at **GLA University, Mathura**
+  - **Academic Performance:** 7.6 CGPA (2nd Year, 3rd Semester)
+- **Specialization:** Data Science, Generative AI, Java Programming, Data Analytics, and Interactive 3D WebGL (Three.js)
+- **Leadership:** Campus Ambassador for **Udgam'26, IIT Guwahati** (Annual Entrepreneurship Summit)
+- **Athletics:** District-Level Sports Player (Under-14)
+- **Location:** Uttar Pradesh, India
+
+---
+
+## 🏆 Verified Certifications
+
+1. **Data Science & Analytics** — HP LIFE / HP Foundation
+2. **Introduction to Generative AI** — Google Cloud / Simplilearn SkillUp
+3. **AI Tools & ChatGPT Workshop** — be10x
 
 ---
 
 ## 🚀 Live Demo
 
-Experience the live interactive portfolio here:
+Experience the live interactive portfolio:
 👉 **[https://sharadshukla933620-spec.github.io/project-1/](https://sharadshukla933620-spec.github.io/project-1/)**
 
 ---
 
-## ✨ Key Features & Capabilities
+## ✨ Key Portfolio Features
 
 - **Interactive 3D Three.js Engine**:
-  - **Full-Screen Starfield Constellation**: 1,200 particle stars reacting to mouse parallax and smooth camera movements.
-  - **Hero 3D Geometric Core**: Real-time rendering of customizable 3D geometries (Torus Knot, Icosahedron Crystal, Cyber Geodesic Sphere, and Dynamic Wave Plane).
-  - **3D Shape & Wireframe Controls**: Switch geometries, toggle wireframe cages, and drag to rotate in 3D space with continuous 60 FPS rendering.
-  - **Real-time FPS Meter**: Built-in performance counter verifying frame timing.
-
-- **Synthesized Web Audio System**:
-  - Pure Web Audio API procedural sound synthesizer (zero external audio file dependencies).
-  - Subtle feedback sounds on button hover, terminal keystrokes, click chimes, and transmission success tones.
-  - Easy mute/unmute control with state saved to `localStorage`.
+  - Full-Screen starfield constellation with 1,200 particle stars reacting to mouse movements.
+  - Hero 3D showcase featuring 4 morphable geometries: Neural Torus, Data Crystal, AI Sphere, and Data Wave Plane.
+  - Real-time FPS counter, wireframe toggle, and 3D pointer drag controls running at 60 FPS.
 
 - **Interactive Developer Console / Terminal**:
-  - Embedded functional bash-like terminal in the About section.
-  - Try commands like `help`, `bio`, `skills`, `projects`, `contact`, `theme [cyan|purple|emerald|amber]`, and `clear`.
-  - Includes command history recall (Arrow Up / Arrow Down) and mobile quick-run chips.
+  - Embedded functional bash terminal emulator.
+  - Commands: `help`, `bio`, `education`, `certs`, `skills`, `leadership`, `projects`, `contact`, `theme [cyan|purple|emerald|amber]`, and `clear`.
+
+- **Verified Certifications Showcase**:
+  - Interactive cards highlighting credentials from HP Foundation, Google Cloud, and be10x.
+
+- **Synthesized Web Audio System**:
+  - Zero external audio files; uses pure Web Audio API procedural synthesis for hover, click, and terminal keystroke feedback.
 
 - **Dynamic Theme Palette Switcher**:
-  - Instant live palette switching: **Cyber Cyan**, **Neon Violet**, **Matrix Emerald**, and **Solar Amber**.
-  - Synchronizes both CSS variables and 3D WebGL point lights & particle shaders in real time.
+  - Instant live palette switching: **Cyber Cyan**, **Neon Violet**, **Matrix Emerald**, and **Solar Amber**. Synchronizes both CSS variables and 3D WebGL point lights & particle shaders.
 
-- **Interactive Skills & Project Showcase**:
-  - Filterable project grid with deep-dive technical preview modals.
-  - Animated proficiency meters triggered on viewport entry.
-  - 3D card tilt and holographic hover reactions.
-
-- **Working Contact & Communication Channels**:
-  - Interactive contact form with client-side validation.
-  - 1-click clipboard email copy with live tooltip feedback (`sharadshukla933620@gmail.com`).
-  - Integrated CV / Resume viewer modal with 1-click print / PDF export stylesheet.
-
-- **Zero Build Step & 100% Offline-Capable**:
-  - Written in clean semantic HTML5, modern CSS3, and modular vanilla JavaScript.
-  - Three.js is vendored locally in `assets/vendor/three.min.js` alongside CDN fallback, guaranteeing 100% offline availability.
+- **CV / Resume Modal**:
+  - Exact structured digital resume with 1-click print / PDF export styling.
 
 ---
 
@@ -59,60 +66,29 @@ Experience the live interactive portfolio here:
 project-1/
 ├── index.html              # Main semantic HTML5 document
 ├── css/
-│   └── style.css           # Glassmorphism design system, responsive styles & animations
+│   └── style.css           # Glassmorphism design system & responsive styling
 ├── js/
-│   ├── three-scene.js      # Three.js background constellation & hero 3D core
-│   └── main.js             # Terminal, audio synthesizer, cursor, modals & UI logic
+│   ├── three-scene.js      # Three.js 3D background & hero object engine
+│   └── main.js             # Terminal, audio synthesizer, cursor & UI logic
 ├── assets/
-│   ├── vendor/
-│   │   └── three.min.js    # Vendored offline fallback Three.js library
-│   └── images/             # Visual assets & icons
-├── .nojekyll               # GitHub Pages deployment configuration
-├── package.json            # Development scripts & metadata
-└── README.md               # Project documentation
+│   └── vendor/
+│       └── three.min.js    # Vendored offline Three.js library
+├── .nojekyll               # GitHub Pages compatibility file
+├── package.json            # Scripts & project metadata
+├── LICENSE                 # MIT License
+└── README.md               # Documentation & setup instructions
 ```
-
----
-
-## 🛠️ Local Development & Quick Start
-
-Because this project is built with vanilla web technologies, you can run it immediately without any heavy build steps or package installations.
-
-### Option 1: Direct Browser
-Simply double-click `index.html` or open it with any web browser.
-
-### Option 2: Local HTTP Server (Recommended)
-Using Python:
-```bash
-# Python 3
-python -m http.server 8080
-```
-Or using Node.js:
-```bash
-npx serve .
-```
-
-Then visit [http://localhost:8080](http://localhost:8080) in your browser.
-
----
-
-## 🌐 Enabling GitHub Pages (How to Host for Free)
-
-1. Open your repository on GitHub: `https://github.com/sharadshukla933620-spec/project-1`
-2. Navigate to **Settings** > **Pages** (under Code and automation).
-3. Under **Build and deployment** > **Branch**:
-   - Select **Branch**: `main`
-   - Select **Folder**: `/ (root)`
-4. Click **Save**.
-5. Your portfolio will be live at `https://sharadshukla933620-spec.github.io/project-1/` in 1-2 minutes!
 
 ---
 
 ## 📬 Contact & Connect
 
-- **Engineer:** Sharad Shukla
+- **Name:** Sharad Shukla
 - **Email:** [sharadshukla933620@gmail.com](mailto:sharadshukla933620@gmail.com)
+- **Phone:** [+91 9336208456](tel:+919336208456)
+- **LinkedIn:** [linkedin.com/in/sharad-shukla-027408381](https://www.linkedin.com/in/sharad-shukla-027408381)
 - **GitHub:** [@sharadshukla933620-spec](https://github.com/sharadshukla933620-spec)
+- **Location:** Uttar Pradesh, India
 
 ---
 
