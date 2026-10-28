@@ -85,7 +85,6 @@ project-1/
 
 - **Name:** Sharad Shukla
 - **Email:** [sharadshukla933620@gmail.com](mailto:sharadshukla933620@gmail.com)
-- **Phone:** [+91 9336208456](tel:+919336208456)
 - **LinkedIn:** [linkedin.com/in/sharad-shukla-027408381](https://www.linkedin.com/in/sharad-shukla-027408381)
 - **GitHub:** [@sharadshukla933620-spec](https://github.com/sharadshukla933620-spec)
 - **Location:** Uttar Pradesh, India

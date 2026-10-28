@@ -388,7 +388,7 @@ Available system commands:
   • <span class="term-highlight">skills</span>      - Technical & professional competencies
   • <span class="term-highlight">leadership</span>  - IIT Guwahati Udgam'26 & District Sports
   • <span class="term-highlight">projects</span>    - Featured Data Science & 3D Web projects
-  • <span class="term-highlight">contact</span>     - Email, Phone (+91 9336208456), LinkedIn & GitHub
+  • <span class="term-highlight">contact</span>     - Email, LinkedIn & GitHub
   • <span class="term-highlight">theme</span>       - Switch color theme (try: theme purple/emerald/amber/cyan)
   • <span class="term-highlight">clear</span>       - Clear terminal window
   • <span class="term-highlight">date</span>        - Display system timestamp
@@ -441,7 +441,6 @@ Type 'contact' to connect with Sharad!
       contact: () => `
 [CONNECT WITH SHARAD SHUKLA]
 • Email:    sharadshukla933620@gmail.com
-• Phone:    +91 9336208456
 • LinkedIn: https://www.linkedin.com/in/sharad-shukla-027408381
 • GitHub:   https://github.com/sharadshukla933620-spec
 • Location: Uttar Pradesh, India
@@ -806,24 +805,6 @@ Type 'contact' to connect with Sharad!
         }, 2500);
       }).catch(() => {
         window.location.href = `mailto:${email}`;
-      });
-    });
-  }
-
-  const copyPhoneBtn = document.getElementById('copyPhoneBtn');
-  const copyPhoneText = document.getElementById('copyPhoneText');
-
-  if (copyPhoneBtn) {
-    copyPhoneBtn.addEventListener('click', () => {
-      const phone = '+919336208456';
-      navigator.clipboard.writeText(phone).then(() => {
-        if (copyPhoneText) copyPhoneText.textContent = 'Copied!';
-        sound.playSuccess();
-        setTimeout(() => {
-          if (copyPhoneText) copyPhoneText.textContent = 'Copy Phone';
-        }, 2500);
-      }).catch(() => {
-        window.location.href = `tel:${phone}`;
       });
     });
   }
